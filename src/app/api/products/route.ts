@@ -27,8 +27,6 @@ export async function GET(req: NextRequest) {
 
     const { data, success, error } = schema.safeParse({ low, high, score });
 
-    console.log(data);
-
     if (!success) {
         // We don't expect zod to fail so return a 500 error instead of a 400
         console.error(error)
@@ -64,6 +62,11 @@ export async function GET(req: NextRequest) {
                     ...(data.high ? { $lte: data.high } : {}),
                 },
             } : {}
+        },
+        {
+            $project: {
+                weight: 0
+            }
         }
     ]
 
