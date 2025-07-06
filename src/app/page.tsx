@@ -25,7 +25,6 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-        console.log(filters);
         const queryParams = new URLSearchParams();
         if (filters.minPrice !== null) {
             queryParams.append("min-price", filters.minPrice.toString());
