@@ -45,13 +45,14 @@ export default function ProductCard({
                 <h2 className="font-montserrat-md text-[15px]"> { name }</h2>
                 <p className="font-montserrat text-[15px]">${ price.toFixed(2) } USD</p>
                 <div className="my-3 flex items-center gap-x-2">
-                    { Object.entries(variants).map(([key, { color }]) => (
+                    { Object.entries(variants).map(([key, { label, color }]) => (
                         <button
                             key={ key }
                             className={
                                 "flex items-center justify-center size-[24px] rounded-full border-1 transition " +
                                 (variant === key ? "border-gray-800" : "hover:border-gray-500 border-transparent")
                             }
+                            aria-label={ `${ label } variant` }
                             onClick={ () => setVariant(key as "yellow" | "white" | "rose") }
                         >
                             <div className={ `size-[16px] rounded-full bg-[${ color }]` } />

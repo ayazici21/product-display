@@ -3,7 +3,8 @@ import "./globals.css";
 import React from "react";
 
 export const metadata: Metadata = {
-    title: "Product Display"
+    title: "Product Display",
+    description: "Renart internship case study - Product Display",
 }
 
 export default function RootLayout({
