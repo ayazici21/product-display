@@ -1,17 +1,18 @@
 "use client";
 
 import FilterBar from "@/components/FilterBar";
-import ProductCard from "@/components/ProductCard";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import ProductCarousel from "@/components/ProductCarousel";
 import { useCallback, useEffect, useState } from "react";
 
 
 export default function Home() {
+    const [loading, setLoading] = useState(true);
+
     const [products, setProducts] = useState<Product[]>([]);
     const [filters, setFilters] = useState<ProductFilters>({
         minPrice: null,
         maxPrice: null,
-        minRating: null,
+        minRating: 0,
     });
 
     const handleResponse = useCallback(async (res: Response) => {
@@ -25,6 +26,14 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
+        if (loading) {
+            console.log("Loading");
+        } else {
+            console.log("Not loading")
+        }
+    }, [loading]);
+
+    useEffect(() => {
         const queryParams = new URLSearchParams();
         if (filters.minPrice !== null) {
             queryParams.append("min-price", filters.minPrice.toString());
@@ -36,9 +45,8 @@ export default function Home() {
             queryParams.append("min-score", filters.minRating.toString());
         }
 
-        fetch(`/api/products?${ queryParams }`).then(handleResponse)
+        fetch(`/api/products?${ queryParams }`).then(handleResponse).then(() => setLoading(false));
     }, [handleResponse, filters]);
-
 
     return (
         <main className="pt-10 w-full space-y-3">
@@ -48,27 +56,7 @@ export default function Home() {
 
             <FilterBar onChange={ setFilters } />
 
-            <Carousel
-                className="w-4/5 mx-auto p-4"
-                opts={ {
-                    align: "start"
-                } }
-            >
-                <CarouselContent>
-                    { products.map((product) => (
-                        <CarouselItem key={ product._id } className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                            <ProductCard
-                                name={ product.name }
-                                price={ product.price }
-                                popularityScore={ product.popularityScore }
-                                images={ product.images }
-                            />
-                        </CarouselItem>
-                    )) }
-                </CarouselContent>
-                <CarouselPrevious className="top-1/4" />
-                <CarouselNext className="top-1/4" />
-            </Carousel>
+            <ProductCarousel products={ products } loading={ loading } />
         </main>
     );
 }
