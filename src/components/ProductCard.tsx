@@ -31,7 +31,7 @@ export default function ProductCard({
     const [variant, setVariant] = useState<"yellow" | "white" | "rose">("yellow");
 
     return (
-        <div className="w-full p-4 flex flex-col font-avenir px-6 space-y-3">
+        <div className="w-full p-4 grid grid-rows-2 font-avenir px-6 space-y-3">
             <div className="mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-gray-50 relative">
                 <Image
                     src={ images[variant] }

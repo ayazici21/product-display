@@ -66,8 +66,8 @@ export default function Home() {
                         </CarouselItem>
                     )) }
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="top-1/4" />
+                <CarouselNext className="top-1/4" />
             </Carousel>
         </main>
     );
