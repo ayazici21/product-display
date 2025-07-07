@@ -9,22 +9,18 @@ export default function ProductCarousel({ products, loading }: { products: Produ
                 className="w-4/5 mx-auto p-4"
                 opts={ {
                     align: "start",
-                    dragFree: true
+                    watchDrag: false
                 } }
             >
                 <CarouselContent>
-                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                        <ProductCardSkeleton />
-                    </CarouselItem>
-                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                        <ProductCardSkeleton />
-                    </CarouselItem>
-                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                        <ProductCardSkeleton />
-                    </CarouselItem>
-                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                        <ProductCardSkeleton />
-                    </CarouselItem>
+                    { Array.from({ length: 4 }).map((_, index) => (
+                        <CarouselItem
+                            key={ index }
+                            className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                        >
+                            <ProductCardSkeleton />
+                        </CarouselItem>
+                    )) }
                 </CarouselContent>
             </Carousel>
         );
@@ -42,7 +38,8 @@ export default function ProductCarousel({ products, loading }: { products: Produ
         <Carousel
             className="w-4/5 mx-auto p-4"
             opts={ {
-                align: "start"
+                align: "start",
+                watchDrag: true,
             } }
         >
             <CarouselContent>
