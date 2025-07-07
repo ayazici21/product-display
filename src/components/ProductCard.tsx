@@ -38,11 +38,10 @@ export default function ProductCard({
                     alt={ `${ name } in ${ variants[variant].label }` }
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 400px"
                     priority
                 />
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1 flex flex-col">
                 <h2 className="font-montserrat-md text-[15px]"> { name }</h2>
                 <p className="font-montserrat text-[15px]">${ price.toFixed(2) } USD</p>
                 <div className="my-3 flex items-center gap-x-2">
