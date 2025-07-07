@@ -1,6 +1,6 @@
+import dotenv from "dotenv";
 import { MongoClient, ServerApiVersion } from "mongodb";
 import products from "../../resources/products.json";
-import dotenv from "dotenv";
 
 dotenv.config();
 

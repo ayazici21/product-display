@@ -32,7 +32,7 @@ export default function ProductCard({
 
     return (
         <div className="w-full p-4 grid grid-rows-2 font-avenir px-6 space-y-3">
-            <div className="mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-gray-50 relative">
+            <div className="select-none mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-gray-50 relative">
                 <Image
                     src={ images[variant] }
                     alt={ `${ name } in ${ variants[variant].label }` }

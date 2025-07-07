@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ detail: "Internal server error" }, { status: 500 });
     }
 
-    const goldPrice = await getGoldPrice({profile: "standard", type: "ask"})
+    const goldPrice = await getGoldPrice({ profile: "standard", type: "ask" })
 
     const pipeline = [
         {
